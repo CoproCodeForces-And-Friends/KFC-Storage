@@ -20,6 +20,7 @@ namespace StorageWebApplication.Controllers
         [HttpGet("StoreData")]
         public string Get()
         {
+            var t = TarantoolManager.GetAllIssues().Result;
             return DataManger.Instance.IssuesCollection.Count > 0 ? DataManger.Instance.GetJson() : "empty";
         }
 
@@ -53,7 +54,7 @@ namespace StorageWebApplication.Controllers
                 DataManger.Instance.IssuesCollection.Add(value.Id, value);    
             }
 
-            var t = TarantoolManager.DoWork(value);
+            var t = TarantoolManager.SaveIssue(value);
             Task.WaitAll(new[] {t});
         }
 
