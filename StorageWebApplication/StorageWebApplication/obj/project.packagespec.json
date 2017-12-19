@@ -1,0 +1,41 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/StorageWebApplication.csproj",
+    "projectName": "StorageWebApplication",
+    "projectPath": "/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/StorageWebApplication.csproj",
+    "outputPath": "/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "2.0"
+        },
+        "Microsoft.AspNetCore.All": {
+          "target": "Package",
+          "version": "2.0.3"
+        },
+        "progaudi.tarantool": {
+          "target": "Package",
+          "version": "0.10.20-gfd5ca24"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

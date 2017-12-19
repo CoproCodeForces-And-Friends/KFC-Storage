@@ -1,0 +1,10 @@
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/bin/Debug/netcoreapp2.0/StorageWebApplication.deps.json
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/bin/Debug/netcoreapp2.0/StorageWebApplication.runtimeconfig.json
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/bin/Debug/netcoreapp2.0/StorageWebApplication.runtimeconfig.dev.json
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/bin/Debug/netcoreapp2.0/StorageWebApplication.dll
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/bin/Debug/netcoreapp2.0/StorageWebApplication.pdb
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/obj/Debug/netcoreapp2.0/StorageWebApplication.csproj.CoreCompileInputs.cache
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/obj/Debug/netcoreapp2.0/StorageWebApplication.AssemblyInfoInputs.cache
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/obj/Debug/netcoreapp2.0/StorageWebApplication.AssemblyInfo.cs
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/obj/Debug/netcoreapp2.0/StorageWebApplication.dll
+/home/baski/RiderProjects/StorageWebApplication/StorageWebApplication/obj/Debug/netcoreapp2.0/StorageWebApplication.pdb

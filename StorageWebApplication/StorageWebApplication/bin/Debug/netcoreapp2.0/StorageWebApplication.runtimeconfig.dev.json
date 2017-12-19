@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/baski/.dotnet/store/|arch|/|tfm|",
+      "/home/baski/.nuget/packages"
+    ]
+  }
+}

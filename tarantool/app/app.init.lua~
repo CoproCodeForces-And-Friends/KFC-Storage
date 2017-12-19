@@ -1,0 +1,85 @@
+#!/usr/bin/env tarantool
+
+local function init()
+    box.schema.user.create('operator', {
+        password = '123123', 
+        if_not_exists = true
+    })
+
+    box.schema.user.grant('operator', 'read,write,execute', 
+    'universe', nil, {
+        if_not_exists = true
+    })
+
+    local issues_space = box.schema.space.create('issues', {
+        if_not_exists = true
+    })
+
+    issues_space:create_index('primary_id', {
+        if_not_exists = true,
+        type = 'HASH',
+        unique = true,
+        parts = {1, 'STRING'}
+    })
+
+  --  issues_space:create_index('secondary_login', {
+  --      if_not_exists = true,
+  --      type = 'HASH',
+  --      unique = true,
+  --      parts = {3, 'STRING'}
+  --  })
+
+  --  issues_space:create_index('secondary_rating', {
+  --      if_not_exists = true,
+  --      type = 'TREE',
+  --      unique = false,
+  --      parts = {5, 'INT'}
+  --  })
+end
+
+local function load_data()
+    local issues_space = box.space.issues
+
+
+    a = {issueId = 'MyIssueId', ConnectionStatus = 'BlockedBy'}
+    b = {issueId = 'MyIssue2Id', ConnectionStatus = 'connected'}
+    c = {}
+    c[1] = a
+    c[2] = b
+
+    issues_space:insert{'uuid.str()',
+    'MyTaskName1',
+    'MyTaskDescription1',
+    'MyTaskStatus1',
+    uuid.str(),
+    uuid.str(),
+    {'test1', 'analysis1', 'mytag1'},
+    'MyProject1Id',
+    c,
+    '2017-12-18T16:55:20.749+0300',
+    '2017-12-18T16:55:20.749+0300'
+     }
+
+    issues_space:insert{'uuid.str()2',
+    'MyTaskName2',
+    'MyTaskDescription2',
+    'MyTaskStatus2',
+    uuid.str(),
+    uuid.str(),
+    {'test2', 'analysis2', 'mytag2'},
+    'MyProject2Id',
+    c,
+    '2017-12-18T16:55:20.749+0300',
+    '2017-12-18T16:55:20.749+0300'
+     }
+end
+
+box.cfg
+{
+    pid_file = nil,
+    background = false,
+    log_level = 5
+}
+
+box.once('init', init)
+box.once('load_data', load_data)
