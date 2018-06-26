@@ -1,0 +1,92 @@
+
+events {
+    use epoll;
+    worker_connections 200000;
+    multi_accept on;
+}
+
+http {
+
+  include mime.types;
+  default_type application/json;
+
+  upstream backend {
+        server 127.0.0.1:3301 max_fails=1 fail_timeout=60s;
+        keepalive 250000;
+  }
+
+
+  server {
+    #serives part
+
+      listen 80 default deferred reuseport so_keepalive=on backlog=65535;
+
+    location /storage/all {
+
+      tnt_read_timeout 60m;
+      tnt_http_rest_methods get;
+      tnt_multireturn_skip_count 2;
+      tnt_pure_result on;
+      tnt_pass_http_request on;
+      tnt_method get_all;
+      tnt_pass backend;
+    }
+
+    location ~* /storage/(github|jira|mantis|trello)/(organization|project|user|task)/all {
+
+      tnt_read_timeout 60m;
+      tnt_http_rest_methods get;
+      tnt_multireturn_skip_count 2;
+      tnt_pure_result on;
+      tnt_pass_http_request on;
+      tnt_method get_entity_all;
+      tnt_pass backend;
+    }
+
+    location ~* /storage/(github|jira|mantis|trello)/(organization|project|user|task)/([-_a-zA-Z0-9]+) {
+
+      tnt_read_timeout 60m;
+      if ( $request_method = GET ) {
+        tnt_method "get_entity";
+      }
+      if ( $request_method = POST ) {
+        tnt_method "add_entity";
+      }
+      if ( $request_method = PUT ) {
+        tnt_method "update_entity";
+      }
+      if ( $request_method = PATCH ) {
+        tnt_method "update_entity_part";
+      }
+      tnt_http_rest_methods get post put patch;
+      tnt_multireturn_skip_count 2;
+      tnt_pure_result on;
+      tnt_pass_http_request on;
+      tnt_pass backend;
+    }
+
+    #Aggregation part
+    location /storage/organization/dictionary {
+
+        tnt_read_timeout 60m;
+        tnt_http_rest_methods get;
+        tnt_method get_main_info;
+        tnt_multireturn_skip_count 2;
+        tnt_pure_result on;
+        tnt_pass_http_request on;
+        tnt_pass backend;
+
+    }
+
+      location /storage/task/search {
+
+          tnt_read_timeout 60m;
+          tnt_http_rest_methods get;
+          tnt_method get_tasks_by_pattern;
+          tnt_multireturn_skip_count 2;
+          tnt_pure_result on;
+          tnt_pass_http_request on;
+          tnt_pass backend;
+      }
+}
+}
